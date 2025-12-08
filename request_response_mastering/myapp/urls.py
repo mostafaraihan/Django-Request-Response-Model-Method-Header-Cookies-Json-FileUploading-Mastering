@@ -9,4 +9,5 @@ urlpatterns = [
     path("CustomHeader/", views.CustomHeader),
     path("FormData/", views.FormData),
     path("RequestBody/", views.RequestBody),
+    path("FileDownload/", views.FileDownload),
 ]

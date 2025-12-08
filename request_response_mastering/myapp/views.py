@@ -2,6 +2,8 @@ import json
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+import os
+from django.conf import settings
 
 def index(request):
     return render(request, 'index.html')
@@ -73,3 +75,14 @@ def RequestBody(request):
     if request.method == 'POST':
         data = json.loads(request.body)
     return JsonResponse(data)
+
+def FileDownload(request):
+
+    file_path = os.path.join(settings.BASE_DIR,"file.pdf")
+
+    file_name = os.path.basename(file_path)
+
+    with open(file_path, 'rb') as myfile:
+        response = HttpResponse(myfile.read(),content_type="application/octet-stream")
+        response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+        return response
