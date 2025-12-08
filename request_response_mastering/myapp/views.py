@@ -86,3 +86,13 @@ def FileDownload(request):
         response = HttpResponse(myfile.read(),content_type="application/octet-stream")
         response['Content-Disposition'] = f'attachment; filename="{file_name}"'
         return response
+
+def FileBinaryView(request):
+    file_path = os.path.join(settings.BASE_DIR,"file.pdf")
+
+    file_name = os.path.basename(file_path)
+
+    with open(file_path, 'rb') as myfile:
+        response = HttpResponse(myfile.read(),content_type="application/pdf")
+        response['Content-Disposition'] = 'inline'
+        return response

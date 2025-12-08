@@ -10,4 +10,5 @@ urlpatterns = [
     path("FormData/", views.FormData),
     path("RequestBody/", views.RequestBody),
     path("FileDownload/", views.FileDownload),
+    path('FileBinaryView/', views.FileBinaryView),
 ]
